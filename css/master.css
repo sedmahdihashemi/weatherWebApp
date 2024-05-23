@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Alkatra;
+    src: url(../font/Alkatra-Medium.ttf);
+}
+
+@font-face {
+    font-family: AlkatraBold;
+    src: url(../font/Alkatra-Bold.ttf);
+}
+
+.shadoww {
+    box-shadow: -2px -2px 4px 0px #ffffff, 50px 50px 50px 0px rgba(0, 0, 0, .25);
+}
+
+.btn1 {
+    box-shadow: -6px -6px 8px rgba(255, 255, 255, 0.9),
+        5px 5px 8px rgba(0, 0, 0, 0.07);
+}
+.btndark{
+    
+box-shadow:-2px -2px 4px rgba(255, 255, 255, 0.05),
+    0 0 10px 10px rgba(255, 255, 255, 0.005),
+    2px 2px 8px rgba(60, 60, 60, 0.1);
+
+    /* background-color: rgb(51, 51, 51); */
+}
+
+
+.btn2 {
+    box-shadow:
+        5px 5px 8px rgba(0, 0, 0, 0.07);
+}
+@keyframes Rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+.icon{
+    animation: Rotate 30s infinite linear;
+}
+
+@keyframes sunAnimation {
+   
+    100%{
+        transform: translateX(-40px)rotate(360deg);
+        /* transform: rotate(360deg); */
+    }
+    
+}
+.sunAnime{
+    animation: sunAnimation 4s infinite linear alternate-reverse;
+}
+@keyframes cldAnimation {
+   
+    100%{
+        transform: translateX(-40px);
+        /* transform: rotate(360deg); */
+    }
+}
+.cldAnime{
+    animation: cldAnimation 4s infinite linear alternate-reverse;
+
+}
+
+@keyframes snowAnimation {
+   
+    100%{
+        transform: translateY(-10px)rotate(360deg);
+        /* transform: rotate(360deg); */
+    }
+    
+}
+.snowAnime{
+    animation: snowAnimation 5s infinite linear alternate-reverse;
+
+}
