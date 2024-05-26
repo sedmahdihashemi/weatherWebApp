@@ -992,6 +992,11 @@ video {
     padding-bottom: 2.5rem;
   }
 
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .sm\:text-\[240px\] {
     font-size: 240px;
   }
@@ -999,11 +1004,6 @@ video {
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-
-  .sm\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 }
 

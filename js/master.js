@@ -17,6 +17,8 @@ let _deg = document.getElementById('_deg')
 let pMain = document.getElementById('pMain')
 let _wind = document.getElementById('_wind')
 let iLoc = document.querySelector('#btn1>i')
+let _true = true
+
 // let btn1 = document.getElementById('btn1')
 let _iconWeather = document.querySelectorAll('#_iconWeather>div')
 let flagTog = 0
@@ -85,21 +87,29 @@ function myApi() {
             return Promise.reject(err)
         })
         .then(data => {
+            
             console.log(data);
             console.log(data.weather[0].main);
             ctName.innerHTML = data.name
             _deg.innerHTML = Math.round((data.main.temp) - 273.15) + '°'
             _wind.innerHTML = data.wind.speed + '  km/h'
             // console.log(_iconWeather);
-            switch(true){
-                case data.weather[0].main == 'Sunny' || 'Clear' : _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear'; break;
-                case data.weather[0].main == 'Clouds' && data.weather[0].description != 'few clouds' : _iconWeather[1].style.display = 'flex'; pMain.innerHTML = 'Clouds';break;
-                case data.weather[0].description == 'few clouds' : _iconWeather[2].style.display = 'flex'; pMain.innerHTML = 'few clouds';break;
-                case data.weather[0].main == 'Rain' || 'Drizzle' || 'Thunderstorm' : _iconWeather[3].style.display = 'flex';pMain.innerHTML = 'Rain';break;
-                case data.weather[0].main == 'Snow' : _iconWeather[4].style.display = 'flex';pMain.innerHTML = 'Snow';break;
-                default: _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear';
-
+            
+            
+                // alert('if')
+                
+                switch(true) {
+                    case data.weather[0].main == 'Sunny' || data.weather[0].main == 'Clear' : _iconWeather[0].style.display = 'flex';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none';  pMain.innerHTML = data.weather[0].main ; break;
+                    case data.weather[0].main == 'Clouds' && data.weather[0].description != 'few clouds' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'flex';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none'; pMain.innerHTML = data.weather[0].main ;break;
+                    case data.weather[0].description == 'few clouds' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'flex';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none'; pMain.innerHTML = 'few clouds';break;
+                    case data.weather[0].main == 'Rain' || data.weather[0].main == 'Drizzle' ||data.weather[0].main == 'Thunderstorm' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'flex';_iconWeather[4].style.display = 'none';pMain.innerHTML = data.weather[0].main ;break;
+                    case data.weather[0].main == 'Snow' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'flex';pMain.innerHTML = data.weather[0].main ;break;
+                    // default: _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear';
+        
+                
             }
+
+            
 
         })
         .catch(err => console.log(err))
@@ -111,6 +121,8 @@ let flag2 = 0
 
 
 btn1.addEventListener('click',()=>{
+    // _true = false
+    // console.log(_true);
   
     if((flag2 % 2) == 0 ){
         iLoc.style.color = '#067CF8'
@@ -120,13 +132,18 @@ btn1.addEventListener('click',()=>{
             _lon = position.coords.longitude
     
             console.log(_lat);
+            _true = false
+            
             mydata2()
             flag2++
         })
 
     }else{
         // iLoc.style.color = '#222'
+        _true = true
         myApi()
+
+        
         flag2++
     }
 })
@@ -151,15 +168,18 @@ function mydata2(){
         _deg.innerHTML = Math.round((data.main.temp) - 273.15) + '°'
         _wind.innerHTML = data.wind.speed + '  km/h'
         // console.log(_iconWeather);
-        switch(true){
-            case data.weather[0].main == 'Sunny' || 'Clear' : _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear'; break;
-            case data.weather[0].main == 'Clouds' && data.weather[0].description != 'few clouds' : _iconWeather[1].style.display = 'flex'; pMain.innerHTML = 'Clouds';break;
-            case data.weather[0].description == 'few clouds' : _iconWeather[2].style.display = 'flex'; pMain.innerHTML = 'few clouds';break;
-            case data.weather[0].main == 'Rain' || 'Drizzle' || 'Thunderstorm' : _iconWeather[3].style.display = 'flex';pMain.innerHTML = 'Rain';break;
-            case data.weather[0].main == 'Snow' : _iconWeather[4].style.display = 'flex';pMain.innerHTML = 'Snow';break;
-            default: _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear';
+        
+        switch(true) {
+            case data.weather[0].main == 'Sunny' || data.weather[0].main == 'Clear' : _iconWeather[0].style.display = 'flex';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none';  pMain.innerHTML = data.weather[0].main ; break;
+            case data.weather[0].main == 'Clouds' && data.weather[0].description != 'few clouds' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'flex';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none'; pMain.innerHTML = data.weather[0].main ;break;
+            case data.weather[0].description == 'few clouds' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'flex';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'none'; pMain.innerHTML = 'few clouds';break;
+            case data.weather[0].main == 'Rain' || data.weather[0].main == 'Drizzle' ||data.weather[0].main == 'Thunderstorm' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'flex';_iconWeather[4].style.display = 'none';pMain.innerHTML = data.weather[0].main ;break;
+            case data.weather[0].main == 'Snow' : _iconWeather[0].style.display = 'none';_iconWeather[1].style.display = 'none';_iconWeather[2].style.display = 'none';_iconWeather[3].style.display = 'none';_iconWeather[4].style.display = 'flex';pMain.innerHTML = data.weather[0].main ;break;
+            // default: _iconWeather[0].style.display = 'flex'; pMain.innerHTML = 'Clear';
 
-        }
+        
+    }
+    
 
     })
     .catch(err => console.log(err))
